@@ -4,7 +4,6 @@ import { Todo } from './Todo';
 import { v4 as uuidv4 } from 'uuid';
 import { EditTodoForm } from "./EditTodoForm";
 import { useTheme } from './ThemeProvider';
-//import './theme.css'
 
 // to do list with 7 days tabs, with reset option(delete all todo) for each day
 // have theme changing feature
@@ -16,7 +15,6 @@ export const TodoWrapper = () => {
 
     useEffect(() => {
         const fetchTodos = async () => {
-            console.log(`In effectttttttttt`);
             try {
                 const response = await fetch('http://localhost:3001/todos');
                 const data = await response.json();
@@ -85,13 +83,7 @@ export const TodoWrapper = () => {
         setTodos(todos.map(todo => todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo))
     }
 
-    /*
-    const editTask = (task, id) => {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo))
-    }*/
-
     const editTodo = async (task, id) => {
-        console.log(`Attempting to edit task with id: ${id}, title: ${task}`);
         try {
             const response = await fetch(`http://localhost:3001/tasks/${id}`, {
                 method: 'PUT',
@@ -99,8 +91,6 @@ export const TodoWrapper = () => {
                 body: JSON.stringify({ title: task }),
             });
 
-
-            const updatedTodo = await response.json();
              console.log(`In edit`);
 
             setTodos(todos.map(todo =>

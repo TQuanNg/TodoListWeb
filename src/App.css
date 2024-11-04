@@ -1,3 +1,17 @@
+:root {
+  --background: #2b2b8b; /* Default TodoWrapper background */
+  --text-primary: #000;
+  --button-bg: #8758ff;
+  --button-text: #fff;
+}
+
+[data-theme="dark"] { /* set variable to color value so it can apply to css class when called*/
+  --background: #69aa90;
+  --text-primary: #fff;
+  --button-bg: #1d8640;
+  --button-text: #000;
+}
+
 .App {
   text-align: center;
 }
@@ -7,6 +21,112 @@
   pointer-events: none;
 }
 
+/*.TabWrapper {
+  flex-direction: column; /* Tabs on top, content below 
+}*/
+
+.TabWrapper {
+  background: var(--background);
+  transition: all 0.5s;
+  padding: 1px;
+}
+
+.TabNavigation {
+  display: flex;
+  justify-content: center;
+}
+
+.tab-item {
+  display: inline-flex;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background: #1d8640;
+}
+
+.tab-item.active {
+  border-color: #000;
+  background: #a1d600;
+  color: #fff;
+}
+
+.content {
+  padding: 5px 5px;
+  height: 10px;
+  overflow: auto;
+  background-color: #fff;
+}
+
+.TodoWrapper {
+  background: var(--background);
+  padding: 2rem;
+  min-height: 100vh;
+  transition: all 0.5s;
+  /*border-radius: 5px;*/
+}
+
+.TodoForm {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.TodoForm input {
+  width: 100%; /* Adjust input width */
+  padding: 0.55rem;
+  margin-right: 0.1rem; /* Space between input and button */
+}
+
+.todo-input {
+  outline: none;
+  background: none;
+  border: 1px solid #8758ff;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 300px;
+  color: #fff;
+}
+
+.todo-input::placeholder {
+  color: #ffffff4d;
+}
+
+.todo-btn {
+  background: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.todo-add-task-btn {
+  background: var(--button-bg);
+  margin-left: 5rem;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.Todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #8758ff;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+
+/*
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -21,7 +141,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: blue;
 }
 
 .App-link {
@@ -35,4 +155,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+
+.NavBar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.NavBar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.NavBar a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
 }
