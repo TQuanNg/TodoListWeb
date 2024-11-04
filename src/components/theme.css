@@ -1,0 +1,9 @@
+
+[data-theme="dark"] { /* set variable to color value so it can apply to css class when called*/
+    --background: #10a368;
+    --text-primary: #fff;
+    --button-bg: #fff;
+    --button-text: #000;
+  }
+  
+  
