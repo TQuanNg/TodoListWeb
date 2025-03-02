@@ -8,7 +8,7 @@ function Projects() {
 }
 
 function Home() {
-    return <div>Home Page</div>; // Placeholder for home content
+    return <div>Home Page</div>; 
 }
 
 export const NavProvider = () => {

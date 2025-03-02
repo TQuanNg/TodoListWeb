@@ -8,40 +8,15 @@ import { useTheme } from '../ThemeProvider';
 export default function TabWrapper() {
 
   const { theme } = useTheme();
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  const tabs = [
-    {
-      label: "Monday",
-      content: <div>This is content for Tab 1</div>,
-    },
-    {
-      label: "Tuesday",
-      content: <div>This is content for Tab 2</div>,
-    },
-    {
-      label: "Wednesday",
-      content: <TodoWrapper />
-    },
-    {
-        label: "Thursday",
-        content: <TodoWrapper />,
-    },
-    {
-        label: "Friday",
-        content: <TodoWrapper />,
-    },
-    {
-        label: "Saturday",
-        content: <TodoWrapper />,
-    },
-    {
-        label: "Sunday",
-        content: <TodoWrapper />,
-    },
-  ];
+  const tabs = days.map(day => ({
+    label: day,
+    content: <TodoWrapper day={day} /> // Pass day prop
+}));
 
   function handleChange(currentTabIndex) {
-    console.log(currentTabIndex);
+    console.log(`Switched to: ${days[currentTabIndex]}`);
   }
 
   return <Tab tabContent={tabs} onChange={handleChange} theme={theme} />;

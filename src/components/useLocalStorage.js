@@ -5,19 +5,19 @@ export default function useLocalStorage(key, defaultValue) {
         let currentValue;
 
         try {
-
-            currentValue = JSON.parse(localStorage.getItem(key) || String(defaultValue))
-
-        } catch(error) {
+            currentValue = JSON.parse(
+                localStorage.getItem(key) || String(defaultValue)
+            );
+        } catch (error) {
             console.log(error);
             currentValue = defaultValue;
         }
-        return currentValue
+        return currentValue;
     });
 
-    useEffect(()=> {
-        localStorage.setItem(key, JSON.stringify(value))
-    }, [key, value])
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
 
-    return [value, setValue]
+    return [value, setValue];
 }

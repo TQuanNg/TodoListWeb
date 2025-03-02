@@ -1,8 +1,6 @@
 import './App.css';
-import {ThemeProvider} from'./components/ThemeProvider'
+import { ThemeProvider } from './components/ThemeProvider'
 import { ThemeWrapper } from './components/ThemeWrapper'
-import { NavProvider} from './components/navigation-bar/NapProvider'
-import { AboutWrapper} from './components/navigation-bar/AboutWrapper'
 
 ////<ThemeWrapper />
 //  <NavProvider />
@@ -11,11 +9,6 @@ import { AboutWrapper} from './components/navigation-bar/AboutWrapper'
 function App() {
   return (
     <div className="App">
-      {/*<ThemeProvider>
-        <ThemeWrapper />
-      </ThemeProvider>*/}
-      {/*<NavProvider />*/}
-
       <ThemeProvider>
         <ThemeWrapper />
       </ThemeProvider>

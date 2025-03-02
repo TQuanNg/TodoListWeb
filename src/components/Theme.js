@@ -1,5 +1,5 @@
-import React from 'react'
-import { faUpLong, faDownLong } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import { faUpLong, faDownLong } from '@fortawesome/free-solid-svg-icons';
 
 export const Theme = ({}) => {
     return (

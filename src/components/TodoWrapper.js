@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { TodoForm } from './TodoForm';
 import { Todo } from './Todo';
-import { v4 as uuidv4 } from 'uuid';
 import { EditTodoForm } from "./EditTodoForm";
 import { useTheme } from './ThemeProvider';
 
-// to do list with 7 days tabs, with reset option(delete all todo) for each day
-// have theme changing feature
-// 
-
-export const TodoWrapper = () => {
+export const TodoWrapper = ({ day }) => {
     const [todos, setTodos] = useState([]);
     const { theme } = useTheme();
 
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                const response = await fetch('http://localhost:3001/todos');
+                const response = await fetch(`http://localhost:3001/todos?day=${day}`);
                 const data = await response.json();
                 setTodos(data.map(todo => ({
                     id: todo.task_id, // Use task_id from the database
@@ -30,7 +25,7 @@ export const TodoWrapper = () => {
         };
 
         fetchTodos();
-    }, []);
+    }, [day]);
 
     const addTodo = async (todo) => {
         /*setTodos([...todos, {
@@ -44,7 +39,7 @@ export const TodoWrapper = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title: todo }),
+                body: JSON.stringify({ title: todo, day: day }),
             });
 
             if (!response.ok) {
@@ -60,12 +55,12 @@ export const TodoWrapper = () => {
             }]);
 
         } catch (error) {
-            console.error('Error adding todo:', error);
+            console.error('Error adding todo: ', error);
         }
     }
 
     const toggleComplete = id => { // should change color to green and move to bottom
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo)) // if complete false => true and vice versa
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
     }
 
     const deleteTodo = async (id) => {
@@ -91,7 +86,7 @@ export const TodoWrapper = () => {
                 body: JSON.stringify({ title: task }),
             });
 
-             console.log(`In edit`);
+            console.log(`In edit`);
 
             setTodos(todos.map(todo =>
                 todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
@@ -122,30 +117,29 @@ export const TodoWrapper = () => {
         }
     }
 
-    //const addNote
-
     return (
         <div className='TodoWrapper' data-theme={theme}>
             <h1> Get things done</h1>
             <div>
                 <TodoForm addTodo={addTodo} />
                 {todos.map((todo, index) => {
-                    
+
                     console.log(`Print todo ${JSON.stringify(todo)} and index ${index}`);
 
                     return (
-                    todo.isEditing ? (
-                        <EditTodoForm editTodo={editTodo} task={todo} />
-                    ) : (
-                        <Todo task={todo} index={index}
-                            toggleComplete={toggleComplete}
-                            deleteTodo={deleteTodo}
-                            toggleEditMode={toggleEditMode}
-                            moveTaskUp={moveTaskUp}
-                            moveTaskDown={moveTaskDown} />
-                    )
+                        todo.isEditing ? (
+                            <EditTodoForm editTodo={editTodo} task={todo} />
+                        ) : (
+                            <Todo task={todo} index={index}
+                                toggleComplete={toggleComplete}
+                                deleteTodo={deleteTodo}
+                                toggleEditMode={toggleEditMode}
+                                moveTaskUp={moveTaskUp}
+                                moveTaskDown={moveTaskDown} />
+                        )
 
-                    )})}
+                    )
+                })}
             </div>
         </div>
     )

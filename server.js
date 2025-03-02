@@ -36,7 +36,6 @@ const pool = new Pool({
   idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
 });
 
-// Now you can use the pool to execute queries
 
 
 const app = express(); // web server using express
@@ -46,7 +45,8 @@ app.use(cors()); // Enable CORS for all routes
 
 // update database when adding task
 app.post('/add-task', async (req, res) => {
-  const { title } = req.body; // get body of request(task title)
+  const { title } = req.body;
+  const { day } = req.body;
 
   if (!title) {
     return res.status(400).json({ error: 'Task title is required' })
@@ -55,8 +55,8 @@ app.post('/add-task', async (req, res) => {
   try {
     // Insert the new task into the database
     const result = await pool.query(
-      `INSERT INTO tasks (title, is_completed) VALUES ($1, $2) RETURNING *`,
-      [title, false]
+      `INSERT INTO tasks (title, day, is_completed) VALUES ($1, $2, $3) RETURNING *`,
+      [title, day, false]
     );
 
     res.status(201).json(result.rows[0]); // Respond with the newly created task
@@ -68,7 +68,9 @@ app.post('/add-task', async (req, res) => {
 
 app.get('/todos', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tasks');
+    const { day } = req.query;
+    const result = await pool.query('SELECT * FROM tasks WHERE day = $1', [day]);
+    console.log(day)
     res.json(result.rows); // Respond with the list of tasks
   } catch (error) {
     console.error('Error fetching tasks:', error.stack);
@@ -90,6 +92,7 @@ app.delete('/task/:id', async (req, res) => {
 
 // edit
 app.put('/tasks/:id', async (req, res) => {
+  const { day } = req.body;
   const { id } = req.params;
   const { title } = req.body;
   try {
