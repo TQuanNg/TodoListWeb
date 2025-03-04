@@ -9,10 +9,10 @@ A simple and user-friendly to-do list application built with React for the front
 
 ## 🚀 How to Run
 1️⃣ Clone the Repository
-```bash
+
 git clone https://github.com/YourUsername/YourRepo.git
 cd YourRepo
-2️⃣
+
 2️⃣ Install Dependencies
 npm install
 
