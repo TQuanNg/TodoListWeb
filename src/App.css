@@ -14,6 +14,10 @@
 
 .App {
   text-align: center;
+  background: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.5s, color 0.5s;
 }
 
 .App-logo {
@@ -44,14 +48,14 @@
   padding: 10px 15px;
   cursor: pointer;
   border: none;
-  color: #fff;
-  background: #1d8640;
+  color: var(--button-text);
+  background: var(--button-bg);
 }
 
 .tab-item.active {
-  border-color: #000;
+  border-color: var(--text-primary);
   background: #a1d600;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .content {
@@ -107,19 +111,19 @@
 
 .todo-add-task-btn {
   background: var(--button-bg);
-  margin-left: 5rem;
-  color: #fff;
+  color: var(--button-text);
   border: none;
-  padding: 1rem;
+  padding: 0.55rem;
   cursor: pointer;
 }
+
 
 .Todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #8758ff;
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-text);
   padding: 0.75rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
