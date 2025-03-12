@@ -7,7 +7,7 @@ const client = new Client({
   user: "postgres",
   host: "localhost",
   database: "todo_app",
-  password: "Wukong0905",
+  password: process.env.DB_PASS,
   port: "5432",
 });
 
