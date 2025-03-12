@@ -39,7 +39,7 @@
 }
 
 .ThemeButton {
-  background-color: var(--background);
+  background-color: var(--button-bg);
   color: var(--button-text);
   padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius);
