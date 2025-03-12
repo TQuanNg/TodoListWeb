@@ -13,7 +13,7 @@ export const Tab = ({tabContent, onChange}) => {
     return (
         <div className="TabWrapper" theme={theme}>
             <h1>To Do List App</h1>
-            <button onClick={handleToggleTheme} className='todo-btn'> Change Theme </button> 
+            <button onClick={handleToggleTheme} className='ThemeButton'> Change Theme </button> 
 
             <div className='TabNavigation'> 
                 {tabContent.map((tabItem, index) => (

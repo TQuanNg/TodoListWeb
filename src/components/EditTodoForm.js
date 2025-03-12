@@ -22,7 +22,7 @@ export const EditTodoForm = ({ editTodo, task }) => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)} />
 
-            <button type='submit' className='todo-btn'>
+            <button type='submit' className='todo-add-task-btn'>
                 Update Task
             </button>
 

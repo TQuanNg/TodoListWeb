@@ -1,15 +1,17 @@
 :root {
-  --background: #2b2b8b;
-  --text-primary: #000;
-  --button-bg: #8758ff;
-  --button-text: #fff;
+  --background: #f9fafb;
+  --text-primary: #1f2937;
+  --button-bg: #ffffff;
+  --button-text: #1f2937;
+  --border-radius: 12px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="dark"] {
-  --background: #69aa90;
+  --background: #6366f1;
   --text-primary: #fff;
-  --button-bg: #1d8640;
-  --button-text: #000;
+  --button-bg: #818cf8;
+  --button-text: #fff;
 }
 
 .App {
@@ -33,11 +35,28 @@
   background: var(--background);
   transition: all 0.5s;
   padding: 1px;
+  
+}
+
+.ThemeButton {
+  background-color: var(--background);
+  color: var(--button-text);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .TabNavigation {
   display: flex;
   justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  
+  overflow: hidden;
 }
 
 .tab-item {
@@ -50,11 +69,16 @@
   border: none;
   color: var(--button-text);
   background: var(--button-bg);
+  box-shadow: var(--shadow);
+}
+
+.tab-item:hover {
+  background-color: #f3f4f6;
 }
 
 .tab-item.active {
   border-color: var(--text-primary);
-  background: #a1d600;
+  background: #10b981;
   color: var(--text-primary);
 }
 
@@ -75,15 +99,15 @@
 
 .TodoForm {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .TodoForm input {
-  width: 100%; /* Adjust input width */
-  padding: 0.55rem;
-  margin-right: 0.1rem; /* Space between input and button */
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  font-size: 1rem;
 }
 
 .todo-input {
@@ -101,17 +125,12 @@
   color: #ffffff4d;
 }
 
-.todo-btn {
-  background: var(--button-bg);
-  color: #fff;
-  border: none;
-  padding: 0.55rem;
-  cursor: pointer;
-}
 
 .todo-add-task-btn {
   background: var(--button-bg);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
   color: var(--button-text);
+  font-weight: 600;
   border: none;
   padding: 0.55rem;
   cursor: pointer;
@@ -127,6 +146,7 @@
   padding: 0.75rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
+  box-shadow: var(--shadow);
 }
 
 .NavBar {
